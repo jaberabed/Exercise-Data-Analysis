@@ -1,0 +1,16 @@
+CREATE OR REPLACE VIEW movies_rental_count AS 
+SELECT
+  f.title AS movie_title,
+  COUNT(r.rental_id) AS rental_count
+FROM
+  film f
+JOIN
+  inventory i ON f.film_id = i.film_id
+JOIN
+  rental r ON i.inventory_id = r.inventory_id
+GROUP BY
+  f.title
+ORDER BY COUNT(r.rental_id) DESC;
+
+
+SELECT * FROM movies_rental_count ;
